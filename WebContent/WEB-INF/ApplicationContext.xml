@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd 
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-2.0.xsd 
+       http://www.directwebremoting.org/schema/spring-dwr 
+       http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+    <!-- Data Scource Details 
+        Two ways of doing this 
+        1. Hard coding Properties
+        2. Put Config in a jdbc.properties file and specify EL for those
+    -->
+    <!-- Data Scource LOCAL and stagingstart     -->   	 
+        <bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+                <property name="driverClassName" value="org.gjt.mm.mysql.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/sh?characterEncoding=UTF-8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="tooroot"/>
+       </bean>  
+       <!-- Data Scource LOCAL and staging END  -->
+      
+    	
+		<!-- ####################### Services Configuration End ##############################-->
+	    <bean id="dataEntryDao" class="com.viv.sh.dao.DataEntryDao">
+			<property name="jdbcTemplate" ref="myDataSource"/>
+	    </bean>
+	    <bean id="dataRetrievalDao" class="com.viv.sh.dao.DataRetrievalDao">
+			<property name="jdbcTemplate" ref="myDataSource"/>
+	    </bean>
+	    <bean id="buyDao" class="com.viv.sh.dao.BuyDao">
+			<property name="jdbcTemplate" ref="myDataSource"/>
+	    </bean>
+	    
+	    
+	   	   
+  </beans>

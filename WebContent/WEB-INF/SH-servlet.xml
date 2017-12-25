@@ -1,0 +1,116 @@
+<!--  Configure XML namespaces instead of DTD -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+	<description>SH spring servlet configuration</description>
+
+    <!-- Tiles configurer provides definitions XML mapping for views -->
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/TilesDefSH.xml</value>
+            </list>
+        </property>
+    </bean> 
+    
+    <!-- DWR Configuration 
+    <dwr:controller id="dwrController" debug="true">
+    	<dwr:config-param name="crossDomainSessionSecurity" value="false"/>	
+    </dwr:controller>
+    
+	<bean id="dwrUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    	<property name="alwaysUseFullPath" value="true"/>
+    	<property name="mappings">
+        	<props>
+            	<prop key="/dwr/**/*">dwrController</prop>
+        	</props>
+    	</property>
+	</bean>
+	
+	<dwr:configuration>
+   		<dwr:convert type="bean" class="com.til.tc.domain.User" />
+	</dwr:configuration>
+	-->
+	<!-- DWR Configuration -->
+    
+    <!-- Configure URL handler -->
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    	<property name="mappings">
+            <props>
+                <prop key="/home.html">homeController</prop>
+                 <prop key="/tablecreator/*.html">tableCreator</prop>
+                 <prop key="/buy/*.html">buyController</prop>
+                 <prop key="/single/*.html">singleController</prop>
+                 <prop key="/equity/*.html">equityMainController</prop>
+                 <prop key="/option/*.html">optionMainController</prop>
+                 <prop key="/future/*.html">futureMainController</prop>
+                 <prop key="/upload/*.html">dataUploadController</prop>
+                 
+             </props>
+        </property>
+    </bean>
+
+   
+
+    <!--  ################# Controller Configuration Starts ####################### -->
+    
+	<bean id="homeController" class="com.viv.sh.controller.HomeController"></bean>
+	<bean id="equityMainController" class="com.viv.sh.controller.EquityMainController">
+		<property name="dataRetrivalService"><ref bean="dataRetrivalService"/></property>
+	</bean>
+	<bean id="optionMainController" class="com.viv.sh.controller.OptionMainController">
+		<property name="dataRetrivalService"><ref bean="dataRetrivalService"/></property>
+	</bean>
+	<bean id="futureMainController" class="com.viv.sh.controller.FutureMainController">
+		<property name="dataRetrivalService"><ref bean="dataRetrivalService"/></property>
+	</bean>
+	
+	<bean id="dataUploadController" class="com.viv.sh.controller.DataUploadController">
+		<property name="dataEntryService"><ref bean="dataEntryService"/></property>
+	
+	</bean>
+	<bean id="singleController" class="com.viv.sh.controller.SingleController"></bean>
+	
+	<bean id="tableCreator" class="com.viv.sh.controller.TableCreator">
+		<property name="dataRetrivalService"><ref bean="dataRetrivalService"/></property>
+	</bean>
+	<bean id="buyController" class="com.viv.sh.controller.BuyController">
+		<property name="buyService"><ref bean="buyService"/></property>
+	</bean>
+	
+	
+	
+	<!--  ################# Controller Configuration Ends ####################### -->
+    <!-- ####################### Services Configuration Starts ##############################-->
+	 	<bean id="dataEntryService" class="com.viv.sh.service.DataEntryService">
+	    	<property name="dataEntryDao"><ref bean="dataEntryDao"/></property>
+	    </bean> 	
+		<bean id="dataRetrivalService" class="com.viv.sh.service.DataRetrivalService">
+	    	<property name="dataRetrievalDao"><ref bean="dataRetrievalDao"/></property>
+	    </bean> 	
+		<bean id="buyService" class="com.viv.sh.service.BuyService">
+	    	<property name="buyDao"><ref bean="buyDao"/></property>
+	    </bean> 	
+		
+
+		<!-- ####################### Services Configuration End ##############################-->
+	    
+        
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    </bean>
+    
+    <!-- Configure View Resolver -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- provide tiles JSTL view -->
+        <property name="viewClass">
+            <value>org.springframework.web.servlet.view.tiles.TilesJstlView</value>
+        </property>
+    </bean>
+
+</beans>

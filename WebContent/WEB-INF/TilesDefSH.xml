@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+<tiles-definitions>
+    <definition name="mainTemplate" page="/WEB-INF/jsp/mainTemplate.jsp">     
+     	<put name="header" value="/WEB-INF/jsp/header.jsp"/>
+        <put name="cpanel" value=""/>
+        <put name="footer" value="/WEB-INF/jsp/footer.jsp" />       
+    </definition>
+    
+    
+    <definition name="home"  extends="mainTemplate">
+        <put name="cpanel" value="/WEB-INF/jsp/home.jsp"/>
+	</definition>
+	<definition name="singleCandleMain" page="/WEB-INF/jsp/singleCandleMain.jsp">     
+     	<put name="header" value="/WEB-INF/jsp/header.jsp"/>
+        <put name="cpanel" value=""/>
+        <put name="footer" value="/WEB-INF/jsp/footer.jsp" />       
+    </definition>
+    <definition name="singleCandle"  extends="singleCandleMain">
+        <put name="cpanel" value="/WEB-INF/jsp/singleCandleCpanel.jsp"/>
+	</definition>
+	
+	<definition name="example"  page="/WEB-INF/jsp/example.jsp"></definition>
+    <definition name="buyHome"  page="/WEB-INF/jsp/buyHome.jsp"></definition>
+    <definition name="saleHome"  page="/WEB-INF/jsp/saleHome.jsp"></definition>
+        
+    <definition name="mainTemplateBoot" page="/WEB-INF/jsp/mainTemplateBoot.jsp">
+    	<put name="includeScriptCSS" value="/WEB-INF/jsp/includeScriptCssBoot.jsp"/>
+    	<put name="navigation" value="/WEB-INF/jsp/navigationBoot.jsp"/>
+    	<put name="footer" value="/WEB-INF/jsp/footerBoot.jsp"/>
+    </definition>    
+    <definition name="initEquity"  extends="mainTemplateBoot">
+        <put name="script" value="/WEB-INF/jsp/initEquityScript.jsp"/>
+        <put name="css" value=""/>
+        <put name="cPanel" value="/WEB-INF/jsp/initEquityCPanel.jsp"/>
+	</definition>
+	<definition name="showEquity"  extends="mainTemplateBoot">
+        <put name="script" value="/WEB-INF/jsp/includeAmCssScript.jsp"/>
+        <put name="css" value=""/>
+        <put name="cPanel" value="/WEB-INF/jsp/showEquityCPanel.jsp"/>
+	</definition>
+	<definition name="showOption"  extends="mainTemplateBoot">
+        <put name="script" value="/WEB-INF/jsp/includeAmCssScript.jsp"/>
+        <put name="css" value=""/>
+        <put name="cPanel" value="/WEB-INF/jsp/showOptionCPanel.jsp"/>
+	</definition>
+	<definition name="showOptionD3"  extends="mainTemplateBoot">
+        <put name="script" value="/WEB-INF/jsp/includeD3CssScript.jsp"/>
+        <put name="css" value=""/>
+        <put name="cPanel" value="/WEB-INF/jsp/showOptionD3CPanel.jsp"/>
+	</definition>
+	
+	
+	
+	<definition name="showFuture"  extends="mainTemplateBoot">
+        <put name="script" value="/WEB-INF/jsp/includeAmCssScript.jsp"/>
+        <put name="css" value=""/>
+        <put name="cPanel" value="/WEB-INF/jsp/showFutureCPanel.jsp"/>
+	</definition>
+	
+	
+	<definition name="uploadData"  extends="mainTemplateBoot">
+        <put name="script" value="/"/>
+        <put name="css" value=""/>
+        <put name="cPanel" value="/WEB-INF/jsp/uploadData.jsp"/>
+	</definition>
+	
+	    
+        
+		 
+</tiles-definitions>

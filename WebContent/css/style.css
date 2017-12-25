@@ -1,0 +1,74 @@
+body{
+	border: 1px solid red;
+	margin: 1px;
+	background-color: #F2F2F2;
+	
+}
+#headerDiv{
+	background-color: #F6CEEC;
+	border: 1px solid blue;
+	
+}
+#footerDiv{
+	background-color: #F6CEEC;
+	border: 1px solid blue;
+	
+}
+
+#boughtDiv{
+	margin-top:40px
+	
+}
+#headerDiv a{
+	padding:0 60px 0 60px;
+	font: bold;
+	font-weight:bold;
+	color: black;
+	border-right: 1px solid #E8BEBE;
+	text-decoration: none;
+}
+table{
+	border:1 px solid black;
+	border-collapse: collapse;
+	background-color: #F8E0F7;
+	
+}
+tr{
+	
+}
+button{
+	background-image: url('../img/headerBg.jpg');
+	border-style: outset;
+}
+
+th{
+	border: 1px solid black;
+	font-weight: bold;
+	background-color: #D6A558;
+}
+
+td{
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+td a{
+	text-decoration: none;
+	color: blue;
+	
+}
+td a:visited{
+	color:blue;
+}
+
+.greenStyle{
+	background-color:#81F781 ;
+}
+
+.redStyle{
+	background-color: #FA5858;
+}
+
+.yellowStyle{
+	background-color: #F3F781;
+}
